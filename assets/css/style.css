@@ -41,12 +41,12 @@
   --bg-gradient-yellow-2: linear-gradient(
     135deg, 
     hsla(45, 100%, 71%, 0.251) 0%, 
-    hsla(35, 100%, 68%, 0) 59.86%x
+    hsla(70, 48%, 45%, 0) 59.86%
   ), hsl(240, 2%, 13%);
   --border-gradient-onyx: linear-gradient(
     to bottom right, 
-    hsl(0, 0%, 25%) 0%, 
-    hsla(0, 0%, 25%, 0) 50%
+    hsl(62, 69%, 50%) 0%, 
+    hsla(0, 67%, 45%, 0) 50%
   );
   --text-gradient-yellow: linear-gradient(
     to right, 
