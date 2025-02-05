@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Irankunda David - Personal Portfolio</title>
+  <title>Irankunda David - Web Developer in Rwanda</title>
 
   <!--
     - favicon
@@ -16,6 +16,7 @@
     - custom css link
   -->
   <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/styleSlide.css">
 
   <!--
     - google font link
@@ -455,51 +456,19 @@
 
           <h3 class="h3 clients-title">Clients</h3>
 
-          <ul class="clients-list has-scrollbar">
 
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/crowd.png" alt="client logo">
-              </a>
-            </li>
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/brand-2.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/brand-3.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/brand-2.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/brand-4.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/brand-5.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/brand-7.png" alt="client logo">
-              </a>
-            </li>
-
-          </ul>
-
+            <div class="logos">
+              <div class="logos-slide">
+                <img src="./assets/images/crowd.png" style="width: 100px; height: 70px;" />
+                <img src="./assets/images/brand-2.png" />
+                <img src="./assets/images/brand-3.png" />
+                <img src="./assets/images/Crowd.png"  style="width: 100px; height: 70px;"/>
+                <img src="./assets/images/brand-4.png" />
+                <img src="./assets/images/brand-5.png" />
+                <img src="./assets/images/brand-7.png" />
+              </div>
+            </div>
+            
         </section>
 
       </article>
@@ -1422,6 +1391,11 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+  <script>
+    var copy = document.querySelector(".logos-slide").cloneNode(true);
+    document.querySelector(".logos").appendChild(copy);
+  </script>
+
 <!-- toggle script  -->
   <script>
     const toggleButtons = document.querySelectorAll('[data-toggle-btn]');
@@ -1437,26 +1411,6 @@
   </script>
 
 
-<script>
-  function counterUp(element, endValue, duration) {
-    let startValue = 0;
-    let increment = endValue / (duration / 16);
-    let interval = setInterval(() => {
-      startValue += increment;
-      element.innerText = Math.ceil(startValue);
-      if (startValue >= endValue) {
-        element.innerText = endValue;
-        clearInterval(interval);
-      }
-    }, 16);
-  }
-
-  window.onload = function () {
-    counterUp(document.getElementById('experience'), 4, 2000);
-    counterUp(document.getElementById('projects'), 40, 2000);
-    counterUp(document.getElementById('clients'), 38, 2000);
-  };
-</script>
 
 
 <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>

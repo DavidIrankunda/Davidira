@@ -1,0 +1,85 @@
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.logos {
+  overflow: hidden;
+  padding: 50px 0;
+  background: #091624; 
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.logos:before,
+.logos:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logos:before {
+  left: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), #083b6e);
+}
+
+.logos:after {
+  right: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #545324);
+}
+
+.logos-slide {
+  display: flex;
+  gap: 50px;
+  animation: slide 25s linear infinite;
+}
+
+.logos-slide img {
+  height: 60px;
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+  opacity: 0.9;
+  filter: grayscale(20%);
+}
+
+.logos-slide img:hover {
+  transform: scale(1.1);
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+.logos:hover .logos-slide {
+  animation-play-state: paused;
+}
+
+/* Make the animation seamless by duplicating the slides */
+.logos-slide-wrapper {
+  display: flex;
+  gap: 50px;
+  width: max-content;
+}
+
+.logos-slide-wrapper .logos-slide {
+  animation: slide 25s linear infinite;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .logos-slide img {
+    height: 45px;
+  }
+
+  .logos-slide {
+    gap: 30px;
+  }
+}
