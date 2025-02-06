@@ -1417,257 +1417,70 @@
 
 
 
-<script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
-<!-- <script>
-  // WhatsApp Button and Widget Settings
-  var wa_btnSetting = {
-    "btnColor": "linear-gradient(to right, hsl(45, 100%, 71%), hsl(207, 65%, 6%))", // Yellow + Dark Blue gradient
-    "ctaText": "Message Us",
-    "cornerRadius": 40,
-    "marginBottom": 20,
-    "marginLeft": 20,
-    "marginRight": 20,
-    "btnPosition": "left",
-    "whatsAppNumber": "250780854895",
-    "welcomeMessage": "Hello, How can I assist you today?",
-    "zIndex": 999999,
-    "btnColorScheme": "light"
-  };
-
-  var wa_widgetSetting = {
-    "title": "David",
-    "subTitle": "Quick Support",
-    "headerBackgroundColor": " hsl(207, 65%, 6%)",
-    "greetingText": "Hi there! How can I help?",
-    "ctaText": "Open Chat",
-    "btnColor": "linear-gradient(to right, hsl(45, 100%, 71%), hsl(207, 65%, 6%))",  // Gradient color
-    "cornerRadius": 40,
-    "brandImage": "https://imgur.com/a/HE1VmGf"
-  };
-
-  // Show Widget with a delay and animate
-  window.onload = () => {
-    setTimeout(() => {
-      _waEmbed(wa_btnSetting, wa_widgetSetting);  // Embed WhatsApp widget
-
-      let waButton = document.querySelector(".wa-chat-button");  // Select button
-      if (waButton) {
-        // Apply Animation and Hover Effects
-        waButton.style.animation = "fadeIn 1s ease-out, bounce 1.5s infinite";
-        waButton.style.transition = "transform 0.3s ease, box-shadow 0.3s ease";
-
-        // Hover effect for interaction
-        waButton.addEventListener("mouseenter", () => {
-          waButton.style.transform = "scale(1.1)";
-          waButton.style.boxShadow = "0 8px 20px rgba(255, 165, 0, 0.5)"; // Bright yellow shadow
-        });
-        waButton.addEventListener("mouseleave", () => {
-          waButton.style.transform = "scale(1)";
-          waButton.style.boxShadow = "none";
-        });
-
-        // Draggable functionality
-        let isDragging = false;
-        let offsetX, offsetY;
-
-        waButton.addEventListener('mousedown', (e) => {
-          isDragging = true;
-          offsetX = e.clientX - waButton.offsetLeft;
-          offsetY = e.clientY - waButton.offsetTop;
-          waButton.style.cursor = "move";
-        });
-
-        document.addEventListener('mousemove', (e) => {
-          if (isDragging) {
-            waButton.style.left = `${e.clientX - offsetX}px`;
-            waButton.style.top = `${e.clientY - offsetY}px`;
-          }
-        });
-
-        document.addEventListener('mouseup', () => {
-          isDragging = false;
-          waButton.style.cursor = "pointer";
-        });
-
-        // Add close button to hide the widget forever
-        let closeButton = document.createElement("button");
-        closeButton.innerHTML = "X";
-        closeButton.style.position = "absolute";
-        closeButton.style.top = "-10px";
-        closeButton.style.right = "-10px";
-        closeButton.style.background = "red";
-        closeButton.style.color = "white";
-        closeButton.style.border = "none";
-        closeButton.style.borderRadius = "50%";
-        closeButton.style.fontSize = "16px";
-        closeButton.style.cursor = "pointer";
-        waButton.appendChild(closeButton);
-
-        closeButton.addEventListener('click', () => {
-          waButton.style.display = "none";  // Hide the widget
-          localStorage.setItem("waWidgetClosed", "true");  // Save in localStorage to hide permanently
-        });
-
-        // Check if the widget has been closed before
-        if (localStorage.getItem("waWidgetClosed") === "true") {
-          waButton.style.display = "none";  // Hide if closed before
-        }
-
-        // Create the "Free Booking" button
-        let bookingButton = document.createElement("a");
-        bookingButton.href = "https://calendly.com/izubagen/info";
-        bookingButton.target = "_blank"; // Open in new tab
-        bookingButton.innerText = "Free Booking";
-        bookingButton.style.display = "block";
-        bookingButton.style.marginTop = "10px";
-        bookingButton.style.padding = "10px 15px";
-        bookingButton.style.textAlign = "center";
-        bookingButton.style.borderRadius = "20px";
-        bookingButton.style.fontSize = "14px";
-        bookingButton.style.fontWeight = "bold";
-        bookingButton.style.background = "linear-gradient(to right, hsl(135, 65%, 50%), hsl(207, 65%, 40%))"; // Green to Blue gradient
-        bookingButton.style.color = "white";
-        bookingButton.style.textDecoration = "none";
-        bookingButton.style.cursor = "pointer";
-        bookingButton.style.transition = "0.3s";
-        
-        // Hover effect for the "Free Booking" button
-        bookingButton.addEventListener("mouseenter", () => {
-          bookingButton.style.transform = "scale(1.1)";
-          bookingButton.style.boxShadow = "0 4px 15px rgba(0, 255, 0, 0.5)"; // Green shadow
-        });
-        bookingButton.addEventListener("mouseleave", () => {
-          bookingButton.style.transform = "scale(1)";
-          bookingButton.style.boxShadow = "none";
-        });
-
-        // Append "Free Booking" button inside the widget
-        waButton.appendChild(bookingButton);
-      }
-    }, 20000);  // 20-second delay
-  };
-
-  // CSS Animations (fade-in + bounce)
-  let style = document.createElement("style");
-  style.innerHTML = `
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-    .wa-chat-button {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4); /* Subtle yellow shadow */
-    }
-  `;
-  document.head.appendChild(style);
-</script> -->
-
-
-
-<script>document.addEventListener("DOMContentLoaded", function () {
-  let widget = document.createElement("div");
-  widget.id = "wa-widget";
-  widget.innerHTML = `
-    <div id="wa-header">
-      <span id="wa-title">David - Quick Support</span>
-      <button id="wa-close">X</button>
+<div class="WA_Chat_Widget" data-position="bottom-right">
+  <div class="WA_ChatBox">
+    <div class="WA_ChatBox_Header">
+      <div class="avatarBox">
+        <img src="./Photo.jpg" alt="Chat Avatar">
+      </div>
+      <div class="infoBox">
+        <h4 class="name">David</h4>
+        <span class="answer_time">Helping Desk</span>
+      </div>
+      <button class="WA_Close" onclick="hideChatbox()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+          <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" />
+        </svg>
+      </button>
     </div>
-    <div id="wa-body">
-      <p>Hi there! How can I help?</p>
-      <a id="wa-chat" href="https://wa.me/250780854895" target="_blank">Open Chat</a>
-      <a id="wa-booking" href="https://calendly.com/izubagen/info" target="_blank">Free Booking</a>
+    <div class="WA_ChatBox_Body">
+      <div class="message">
+        <h4 class="username">David</h4>
+        <div class="message_content">
+          <p>Hey There, How can I help you?</p>
+        </div>
+      </div>
     </div>
-  `;
-  document.body.appendChild(widget);
+    <div class="WA_ChatBox_Footer">
+      <a class="btn btn-whatsapp" href="http://wa.me/250780854895" target="_blank">Start Chat</a>
+      <a class="btn btn-whatsapp" href="https://calendly.com/izubagen/info" target="_blank">Free Booking</a>
+    </div>
+  </div>
+  <div class="WA_FloatingButton" onclick="toggleChatbox()">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#4FCE5D" viewBox="0 0 90 90">
+      <path d="M90 43.841c0 24.213-19.779 43.841-44.182 43.841a44.256 44.256 0 01-21.357-5.455L0 90l7.975-23.522a43.38 43.38 0 01-6.34-22.637C1.635 19.628 21.416 0 45.818 0 70.223 0 90 19.628 90 43.841zM45.818 6.982c-20.484 0-37.146 16.535-37.146 36.859 0 8.065 2.629 15.534 7.076 21.61L11.107 79.14l14.275-4.537A37.122 37.122 0 0045.819 80.7c20.481 0 37.146-16.533 37.146-36.857S66.301 6.982 45.818 6.982zm22.311 46.956c-.273-.447-.994-.717-2.076-1.254-1.084-.537-6.41-3.138-7.4-3.495-.993-.358-1.717-.538-2.438.537-.721 1.076-2.797 3.495-3.43 4.212-.632.719-1.263.809-2.347.271-1.082-.537-4.571-1.673-8.708-5.333-3.219-2.848-5.393-6.364-6.025-7.441-.631-1.075-.066-1.656.475-2.191.488-.482 1.084-1.255 1.625-1.882.543-.628.723-1.075 1.082-1.793.363-.717.182-1.344-.09-1.883-.27-.537-2.438-5.825-3.34-7.977-.902-2.15-1.803-1.792-2.436-1.792-.631 0-1.354-.09-2.076-.09s-1.896.269-2.889 1.344c-.992 1.076-3.789 3.676-3.789 8.963 0 5.288 3.879 10.397 4.422 11.113.541.716 7.49 11.92 18.5 16.223C58.2 65.771 58.2 64.336 60.186 64.156c1.984-.179 6.406-2.599 7.312-5.107.9-2.512.9-4.663.631-5.111z" />
+    </svg>
+  </div>
+</div>
 
-  let isDragging = false, offsetX, offsetY;
-  
-  widget.addEventListener("mousedown", (e) => {
-    if (e.target.id !== "wa-close") {
-      isDragging = true;
-      offsetX = e.clientX - widget.offsetLeft;
-      offsetY = e.clientY - widget.offsetTop;
-      widget.style.cursor = "grabbing";
-    }
-  });
+<script>
+  let isChatboxVisible = false;
+  const chatbox = document.querySelector(".WA_Chat_Widget .WA_ChatBox");
+  const floatingButton = document.querySelector(".WA_Chat_Widget .WA_FloatingButton");
 
-  document.addEventListener("mousemove", (e) => {
-    if (isDragging) {
-      widget.style.left = `${e.clientX - offsetX}px`;
-      widget.style.top = `${e.clientY - offsetY}px`;
-    }
-  });
+  // Show widget after 20 seconds
+  setTimeout(() => {
+    floatingButton.style.opacity = 1;
+    floatingButton.style.transform = "translateY(0)";
+  }, 20000);
 
-  document.addEventListener("mouseup", () => {
-    isDragging = false;
-    widget.style.cursor = "grab";
-  });
-
-  document.getElementById("wa-close").addEventListener("click", () => {
-    widget.style.display = "none";
-    localStorage.setItem("waWidgetClosed", "true");
-  });
-
-  if (localStorage.getItem("waWidgetClosed") === "true") {
-    widget.style.display = "none";
+  function hideChatbox() {
+    isChatboxVisible = false;
+    chatbox.classList.remove("active");
   }
 
-  let style = document.createElement("style");
-  style.innerHTML = `
-    #wa-widget {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      width: 250px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      padding: 10px;
-      cursor: grab;
-      user-select: none;
+  function toggleChatbox() {
+    isChatboxVisible = !isChatboxVisible;
+    chatbox.style.display = isChatboxVisible ? "block" : "none";
+    if (isChatboxVisible) {
+      setTimeout(() => chatbox.classList.add("active"), 10);
+    } else {
+      chatbox.classList.remove("active");
     }
-    #wa-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: bold;
-      padding-bottom: 5px;
-    }
-    #wa-close {
-      background: red;
-      color: white;
-      border: none;
-      cursor: pointer;
-      padding: 2px 6px;
-      border-radius: 50%;
-    }
-    #wa-body a {
-      display: block;
-      margin: 5px 0;
-      padding: 8px;
-      text-align: center;
-      color: white;
-      border-radius: 5px;
-      text-decoration: none;
-    }
-    #wa-chat {
-      background: green;
-    }
-    #wa-booking {
-      background: blue;
-    }
-  `;
-  document.head.appendChild(style);
-});
+  }
 </script>
+
+
 
 
 </body>
