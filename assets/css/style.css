@@ -2180,7 +2180,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
     /* Header */
     .WA_Chat_Widget .WA_ChatBox_Header {
-      background: linear-gradient(135deg, #095e54, #128c7e);
+      background: linear-gradient(135deg, #0a1442, #a4ad22);;
       padding: 20px;
       display: flex;
       align-items: center;
