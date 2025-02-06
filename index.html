@@ -1433,7 +1433,7 @@
     "zIndex": 999999,
     "btnColorScheme": "light"
   };
-  
+
   var wa_widgetSetting = {
     "title": "David",
     "subTitle": "Quick Support",
@@ -1465,6 +1465,53 @@
           waButton.style.transform = "scale(1)";
           waButton.style.boxShadow = "none";
         });
+
+        // Draggable functionality
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        waButton.addEventListener('mousedown', (e) => {
+          isDragging = true;
+          offsetX = e.clientX - waButton.offsetLeft;
+          offsetY = e.clientY - waButton.offsetTop;
+          waButton.style.cursor = "move";
+        });
+
+        document.addEventListener('mousemove', (e) => {
+          if (isDragging) {
+            waButton.style.left = `${e.clientX - offsetX}px`;
+            waButton.style.top = `${e.clientY - offsetY}px`;
+          }
+        });
+
+        document.addEventListener('mouseup', () => {
+          isDragging = false;
+          waButton.style.cursor = "pointer";
+        });
+
+        // Add close button to hide the widget forever
+        let closeButton = document.createElement("button");
+        closeButton.innerHTML = "X";
+        closeButton.style.position = "absolute";
+        closeButton.style.top = "-10px";
+        closeButton.style.right = "-10px";
+        closeButton.style.background = "red";
+        closeButton.style.color = "white";
+        closeButton.style.border = "none";
+        closeButton.style.borderRadius = "50%";
+        closeButton.style.fontSize = "16px";
+        closeButton.style.cursor = "pointer";
+        waButton.appendChild(closeButton);
+
+        closeButton.addEventListener('click', () => {
+          waButton.style.display = "none";  // Hide the widget
+          localStorage.setItem("waWidgetClosed", "true");  // Save in localStorage to hide permanently
+        });
+
+        // Check if the widget has been closed before
+        if (localStorage.getItem("waWidgetClosed") === "true") {
+          waButton.style.display = "none";  // Hide if closed before
+        }
       }
     }, 20000);  // 20-second delay
   };
@@ -1481,6 +1528,9 @@
       50% { transform: translateY(-5px); }
     }
     .wa-chat-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
       transition: all 0.3s ease;
       cursor: pointer;
       box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4); /* Subtle yellow shadow */
@@ -1488,6 +1538,7 @@
   `;
   document.head.appendChild(style);
 </script>
+
 
 
 
