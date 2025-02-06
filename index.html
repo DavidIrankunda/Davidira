@@ -1418,7 +1418,7 @@
 
 
 <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
-<script>
+<!-- <script>
   // WhatsApp Button and Widget Settings
   var wa_btnSetting = {
     "btnColor": "linear-gradient(to right, hsl(45, 100%, 71%), hsl(207, 65%, 6%))", // Yellow + Dark Blue gradient
@@ -1512,6 +1512,37 @@
         if (localStorage.getItem("waWidgetClosed") === "true") {
           waButton.style.display = "none";  // Hide if closed before
         }
+
+        // Create the "Free Booking" button
+        let bookingButton = document.createElement("a");
+        bookingButton.href = "https://calendly.com/izubagen/info";
+        bookingButton.target = "_blank"; // Open in new tab
+        bookingButton.innerText = "Free Booking";
+        bookingButton.style.display = "block";
+        bookingButton.style.marginTop = "10px";
+        bookingButton.style.padding = "10px 15px";
+        bookingButton.style.textAlign = "center";
+        bookingButton.style.borderRadius = "20px";
+        bookingButton.style.fontSize = "14px";
+        bookingButton.style.fontWeight = "bold";
+        bookingButton.style.background = "linear-gradient(to right, hsl(135, 65%, 50%), hsl(207, 65%, 40%))"; // Green to Blue gradient
+        bookingButton.style.color = "white";
+        bookingButton.style.textDecoration = "none";
+        bookingButton.style.cursor = "pointer";
+        bookingButton.style.transition = "0.3s";
+        
+        // Hover effect for the "Free Booking" button
+        bookingButton.addEventListener("mouseenter", () => {
+          bookingButton.style.transform = "scale(1.1)";
+          bookingButton.style.boxShadow = "0 4px 15px rgba(0, 255, 0, 0.5)"; // Green shadow
+        });
+        bookingButton.addEventListener("mouseleave", () => {
+          bookingButton.style.transform = "scale(1)";
+          bookingButton.style.boxShadow = "none";
+        });
+
+        // Append "Free Booking" button inside the widget
+        waButton.appendChild(bookingButton);
       }
     }, 20000);  // 20-second delay
   };
@@ -1537,9 +1568,106 @@
     }
   `;
   document.head.appendChild(style);
+</script> -->
+
+
+
+<script>document.addEventListener("DOMContentLoaded", function () {
+  let widget = document.createElement("div");
+  widget.id = "wa-widget";
+  widget.innerHTML = `
+    <div id="wa-header">
+      <span id="wa-title">David - Quick Support</span>
+      <button id="wa-close">X</button>
+    </div>
+    <div id="wa-body">
+      <p>Hi there! How can I help?</p>
+      <a id="wa-chat" href="https://wa.me/250780854895" target="_blank">Open Chat</a>
+      <a id="wa-booking" href="https://calendly.com/izubagen/info" target="_blank">Free Booking</a>
+    </div>
+  `;
+  document.body.appendChild(widget);
+
+  let isDragging = false, offsetX, offsetY;
+  
+  widget.addEventListener("mousedown", (e) => {
+    if (e.target.id !== "wa-close") {
+      isDragging = true;
+      offsetX = e.clientX - widget.offsetLeft;
+      offsetY = e.clientY - widget.offsetTop;
+      widget.style.cursor = "grabbing";
+    }
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    if (isDragging) {
+      widget.style.left = `${e.clientX - offsetX}px`;
+      widget.style.top = `${e.clientY - offsetY}px`;
+    }
+  });
+
+  document.addEventListener("mouseup", () => {
+    isDragging = false;
+    widget.style.cursor = "grab";
+  });
+
+  document.getElementById("wa-close").addEventListener("click", () => {
+    widget.style.display = "none";
+    localStorage.setItem("waWidgetClosed", "true");
+  });
+
+  if (localStorage.getItem("waWidgetClosed") === "true") {
+    widget.style.display = "none";
+  }
+
+  let style = document.createElement("style");
+  style.innerHTML = `
+    #wa-widget {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 250px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      cursor: grab;
+      user-select: none;
+    }
+    #wa-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      padding-bottom: 5px;
+    }
+    #wa-close {
+      background: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 50%;
+    }
+    #wa-body a {
+      display: block;
+      margin: 5px 0;
+      padding: 8px;
+      text-align: center;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    #wa-chat {
+      background: green;
+    }
+    #wa-booking {
+      background: blue;
+    }
+  `;
+  document.head.appendChild(style);
+});
 </script>
-
-
 
 
 </body>

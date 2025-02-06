@@ -1,302 +1,301 @@
-<style>
-    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Chat Widget</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/*-----------------------------------*\
- * #CONTACT
-\*-----------------------------------*/
+    /* Global Reset */
+    .WA_Chat_Widget * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-.contact { padding-block: var(--section-padding); }
+    /* Floating Button */
+    .WA_Chat_Widget .WA_FloatingButton {
+      position: fixed;
+      width: 70px;
+      height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(12, 17, 43, 0.2);
+      border-radius: 50%;
+      background: #d8cca4;
+      cursor: pointer;
+      z-index: 1000;
+      animation: float 3s ease-in-out infinite;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
 
-.contact-content { margin-bottom: 50px; }
+    .WA_Chat_Widget .WA_FloatingButton svg {
+      width: 40px;
+      height: 40px;
+      fill: #0a1442;
+      transition: transform 0.3s ease;
+    }
 
-.contact-list-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 15px;
-  margin-bottom: 20px;
-}
+    .WA_Chat_Widget .WA_FloatingButton:hover svg {
+      transform: scale(1.1);
+    }
 
-.contact-item-icon {
-  font-size: 25px;
-  color: var(--color-primary);
-}
+    /* Chat Box */
+    .WA_Chat_Widget .WA_ChatBox {
+      position: fixed;
+      width: 360px;
+      height: auto;
+      overflow: hidden;
+      border-radius: 15px;
+      background-color: #a33030;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
 
-.contact-item-icon ion-icon { --ionicon-stroke-width: 40px; }
+    .WA_Chat_Widget .WA_ChatBox.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.contact-item-title { margin-bottom: 10px; }
+    /* Header */
+    .WA_Chat_Widget .WA_ChatBox_Header {
+      background: linear-gradient(135deg, #095e54, #128c7e);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+    }
 
-.contact-list-item .contact-info {
-  color: var(--color-secondary);
-  font-style: normal;
-  line-height: 1.6;
-  transition: var(--transition-1);
-}
+    .WA_Chat_Widget .WA_ChatBox_Header .avatarBox {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #a4ad22;
+    }
 
-.contact-info:not(address):is(:hover, :focus) { color: var(--color-primary); }
+    .WA_Chat_Widget .WA_ChatBox_Header .avatarBox img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-.contac-social-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 15px;
-  padding-inline: 40px;
-}
+    .WA_Chat_Widget .WA_ChatBox_Header .infoBox .name {
+      color: #4ac73e;
+      font-weight: 600;
+      font-size: 18px;
+    }
 
-.contact-social-link {
-  position: relative;
-  background: var(--color-primary);
-  color: var(--bg-primary);
-  width: 35px;
-  height: 35px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  transition: var(--transition-1);
-}
+    .WA_Chat_Widget .WA_ChatBox_Header .infoBox .answer_time {
+      color: #e4e4e4;
+      font-size: 14px;
+    }
 
-.contact-social-link:is(:hover, :focus) {
-  background: var(--raw-seinna);
-  color: var(--white);
-}
+    .WA_Chat_Widget .WA_ChatBox_Header .WA_Close {
+      background: transparent;
+      color: #d34d64;
+      border: none;
+      outline: none;
+      font-size: 20px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
 
-.contact-social-link:is(:hover, :focus) .tooltip {
-  transform: translateY(0);
-  opacity: 1;
-}
+    .WA_Chat_Widget .WA_ChatBox_Header .WA_Close:hover {
+      transform: rotate(90deg);
+    }
 
-.contact-form {
-  background: var(--bg-secondary);
-  padding: 20px;
-  border-radius: var(--radius-12);
-  box-shadow: var(--shadow-1);
-}
+    /* Body */
+    .WA_Chat_Widget .WA_ChatBox_Body {
+      padding: 20px;
+      background: #da9f64;
+      position: relative;
+    }
 
-.form-wrapper { margin-bottom: 25px; }
+    .WA_Chat_Widget .WA_ChatBox_Body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url(./bg-pattern.png);
+      opacity: 0.1;
+      z-index: 0;
+    }
 
-.form-label {
-  color: var(--color-primary);
-  font-size: var(--fs-7);
-  font-family: var(--ff-poppins);
-  margin-bottom: 8px;
-  margin-left: 5px;
-}
+    .WA_Chat_Widget .WA_ChatBox_Body .message {
+      max-width: 280px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      position: relative;
+      animation: slideIn 0.5s ease;
+    }
 
-.input-wrapper { position: relative; }
+    .WA_Chat_Widget .WA_ChatBox_Body .message::before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      left: -10px;
+      top: 10px;
+      border-radius: 3px;
+      clip-path: polygon(100% 0, 0 0, 100% 100%);
+    }
 
-.input-field {
-  background: var(--input-bg);
-  color: var(--raw-seinna);
-  padding: 10px;
-  padding-left: 40px;
-  border-radius: var(--radius-12);
-  transition: var(--transition-1);
-}
+    .WA_Chat_Widget .WA_ChatBox_Body .message .username {
+      color: darkgray;
+      font-weight: 500;
+      font-size: 14px;
+    }
 
-.input-wrapper ion-icon {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  color: var(--color-secondary);
-  font-size: 20px;
-  transition: var(--transition-1);
-}
+    .WA_Chat_Widget .WA_ChatBox_Body .message .message_content {
+      font-size: 14px;
+      color: #000;
+      margin-top: 5px;
+    }
 
-textarea.input-field {
-  min-height: 60px;
-  height: 120px;
-  max-height: 200px;
-  resize: vertical;
-}
+    /* Footer */
+    .WA_Chat_Widget .WA_ChatBox_Footer {
+      padding: 20px;
+      background-color: #b49a51;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-.input-field:focus { outline: 1px solid; }
+    .WA_Chat_Widget .WA_ChatBox_Footer .btn {
+      width: 100%;
+      outline: none;
+      border: none;
+      padding: 12px;
+      border-radius: 1000px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
 
-.input-field:focus + ion-icon { color: var(--raw-seinna); }
+    .WA_Chat_Widget .WA_ChatBox_Footer .btn.btn-whatsapp {
+      background: #128c7e;
+      color: #fff;
+    }
 
-.contact .btn-primary {
-  max-width: unset;
-  width: 100%;
-  background: var(--color-primary);
-  color: var(--bg-primary);
-}
+    .WA_Chat_Widget .WA_ChatBox_Footer .btn.btn-whatsapp:hover {
+      background: #075e54;
+      transform: translateY(-2px);
+    }
 
+    /* Animations */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
 
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
+    /* Position */
+    .WA_Chat_Widget[data-position="bottom-right"] .WA_FloatingButton {
+      bottom: 20px;
+      right: 20px;
+    }
 
-</style>
-
-
+    .WA_Chat_Widget[data-position="bottom-right"] .WA_ChatBox {
+      bottom: 110px;
+      right: 30px;
+    }
+  </style>
+</head>
 <body>
-    
-    
-    <section class="contact" id="contact">
-
-        <div class="contact-content section-content">
-
-          <p class="section-subtitle">Contact</p>
-
-          <h2 class="h3 section-title">Helping Your business shine online with creative digital solutions. Contact us at </h2>
-
-          <p class="section-text">
-            Reach out and share your project idea. Get in touch, and I'll get back to you in no time. Let's make something amazing together!
-          </p>
-
-          <ul class="contact-list">
-
-            <li class="contact-list-item">
-
-              <div class="contact-item-icon">
-                <ion-icon name="location-outline"></ion-icon>
-              </div>
-
-              <div class="wrapper">
-                <h3 class="h4 contact-item-title">Address:</h3>
-
-                <address class="contact-info">
-                  kigali, Rwanda.
-                </address>
-              </div>
-
-            </li>
-
-            <li class="contact-list-item">
-
-              <div class="contact-item-icon">
-                <ion-icon name="call-outline"></ion-icon>
-              </div>
-
-              <div class="wrapper">
-                <h3 class="h4 contact-item-title">Phone:</h3>
-
-                <a href="tel:+250780854895" class="contact-info">(250) 780 854 895</a>
-
-                <a href="tel:+250780854895" class="contact-info">(250) 780 854 895</a>
-              </div>
-
-            </li>
-
-            <li class="contact-list-item">
-
-              <div class="contact-item-icon">
-                <ion-icon name="mail-outline"></ion-icon>
-              </div>
-
-              <div class="wrapper">
-                <h3 class="h4 contact-item-title">Email:</h3>
-
-                <a href="mailto: irankundadavidd64@gmail.com" class="contact-info">irankundadavidd64@gmail.com</a>
-
-                <a href="mailto: irankudavid01@gmail.com" class="contact-info">support@david.com</a>
-              </div>
-
-            </li>
-
-            <li>
-              <ul class="contac-social-list">
-
-                <li>
-                  <a href="#" class="contact-social-link">
-                    <div class="tooltip">Facebook</div>
-
-                    <ion-icon name="logo-facebook"></ion-icon>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="https://twitter.com/DevuRw1" class="contact-social-link">
-                    <div class="tooltip">Twitter</div>
-
-                    <ion-icon name="logo-twitter"></ion-icon>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="https://www.linkedin.com/in/davidirankunda/" class="contact-social-link">
-                    <div class="tooltip">Linkedin</div>
-
-                    <ion-icon name="logo-linkedin"></ion-icon>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#" class="contact-social-link">
-                    <div class="tooltip">Youtube</div>
-
-                    <ion-icon name="logo-youtube"></ion-icon>
-                  </a>
-                </li>
-
-              </ul>
-            </li>
-
-          </ul>
-
+  <div class="WA_Chat_Widget" data-position="bottom-right">
+    <div class="WA_ChatBox">
+      <div class="WA_ChatBox_Header">
+        <div class="avatarBox">
+          <img src="./Photo.jpg" alt="Chat Avatar">
         </div>
-
-        <form action="https://formspree.io/f/myyrrlol" method="POST" class="contact-form">
-
-          <div class="form-wrapper">
-
-            <label for="name" class="form-label">Name</label>
-
-            <div class="input-wrapper">
-
-              <input type="text" name="name" id="name" required placeholder="e.g Your_name" class="input-field">
-
-              <ion-icon name="person-circle"></ion-icon>
-
-            </div>
-
+        <div class="infoBox">
+          <h4 class="name">David</h4>
+          <span class="answer_time">Helping Desk</span>
+        </div>
+        <button class="WA_Close" onclick="hideChatbox()">
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+            <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" />
+          </svg>
+        </button>
+      </div>
+      <div class="WA_ChatBox_Body">
+        <div class="message">
+          <h4 class="username">David</h4>
+          <div class="message_content">
+            <p>Hey There, How can I help you?</p>
           </div>
+        </div>
+      </div>
+      <div class="WA_ChatBox_Footer">
+        <a class="btn btn-whatsapp" href="http://wa.me/250780854895" target="_blank">Start Chat</a>
+        <a class="btn btn-whatsapp" href="https://calendly.com/izubagen/info" target="_blank">Free Booking</a>
+      </div>
+    </div>
+    <div class="WA_FloatingButton" onclick="toggleChatbox()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="#4FCE5D" viewBox="0 0 90 90">
+        <path d="M90 43.841c0 24.213-19.779 43.841-44.182 43.841a44.256 44.256 0 01-21.357-5.455L0 90l7.975-23.522a43.38 43.38 0 01-6.34-22.637C1.635 19.628 21.416 0 45.818 0 70.223 0 90 19.628 90 43.841zM45.818 6.982c-20.484 0-37.146 16.535-37.146 36.859 0 8.065 2.629 15.534 7.076 21.61L11.107 79.14l14.275-4.537A37.122 37.122 0 0045.819 80.7c20.481 0 37.146-16.533 37.146-36.857S66.301 6.982 45.818 6.982zm22.311 46.956c-.273-.447-.994-.717-2.076-1.254-1.084-.537-6.41-3.138-7.4-3.495-.993-.358-1.717-.538-2.438.537-.721 1.076-2.797 3.495-3.43 4.212-.632.719-1.263.809-2.347.271-1.082-.537-4.571-1.673-8.708-5.333-3.219-2.848-5.393-6.364-6.025-7.441-.631-1.075-.066-1.656.475-2.191.488-.482 1.084-1.255 1.625-1.882.543-.628.723-1.075 1.082-1.793.363-.717.182-1.344-.09-1.883-.27-.537-2.438-5.825-3.34-7.977-.902-2.15-1.803-1.792-2.436-1.792-.631 0-1.354-.09-2.076-.09s-1.896.269-2.889 1.344c-.992 1.076-3.789 3.676-3.789 8.963 0 5.288 3.879 10.397 4.422 11.113.541.716 7.49 11.92 18.5 16.223C58.2 65.771 58.2 64.336 60.186 64.156c1.984-.179 6.406-2.599 7.312-5.107.9-2.512.9-4.663.631-5.111z" />
+      </svg>
+    </div>
+  </div>
 
-          <div class="form-wrapper">
+  <script>
+    let isChatboxVisible = false;
+    const chatbox = document.querySelector(".WA_Chat_Widget .WA_ChatBox");
+    const floatingButton = document.querySelector(".WA_Chat_Widget .WA_FloatingButton");
 
-            <label for="email" class="form-label">Email</label>
+    // Show widget after 20 seconds
+    setTimeout(() => {
+      floatingButton.style.opacity = 1;
+      floatingButton.style.transform = "translateY(0)";
+    }, 20000);
 
-            <div class="input-wrapper">
+    function hideChatbox() {
+      isChatboxVisible = false;
+      chatbox.classList.remove("active");
+    }
 
-              <input type="email" name="email" id="email" required placeholder="e.g name@mail.com"
-                class="input-field">
-
-              <ion-icon name="mail"></ion-icon>
-
-            </div>
-
-          </div>
-
-          <div class="form-wrapper">
-
-            <label for="phone" class="form-label">Phone</label>
-
-            <div class="input-wrapper">
-
-              <input type="tel" name="phone" id="phone" required placeholder="Phone Number" class="input-field">
-
-              <ion-icon name="call"></ion-icon>
-
-            </div>
-
-          </div>
-
-          <div class="form-wrapper">
-
-            <label for="message" class="form-label">Message</label>
-
-            <div class="input-wrapper">
-
-              <textarea name="message" id="message" required placeholder="Write message..."
-                class="input-field"></textarea>
-
-              <ion-icon name="chatbubbles"></ion-icon>
-
-            </div>
-
-          </div>
-
-          <button type="submit" class="btn btn-primary">Send</button>
-
-        </form>
-
-      </section>
-
+    function toggleChatbox() {
+      isChatboxVisible = !isChatboxVisible;
+      chatbox.style.display = isChatboxVisible ? "block" : "none";
+      if (isChatboxVisible) {
+        setTimeout(() => chatbox.classList.add("active"), 10);
+      } else {
+        chatbox.classList.remove("active");
+      }
+    }
+  </script>
 </body>
+</html>
