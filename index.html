@@ -1419,12 +1419,77 @@
 
 <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
 <script>
-  var wa_btnSetting = {"btnColor":"#2da950","ctaText":"Message Us","cornerRadius":40,"marginBottom":20,"marginLeft":20,"marginRight":20,"btnPosition":"left","whatsAppNumber":"250780854895","welcomeMessage":"Hello , ...","zIndex":999999,"btnColorScheme":"light"};
-  var wa_widgetSetting = {"title":"David ","subTitle":"Quickly supporter","headerBackgroundColor":"#48994d","headerColorScheme":"light","greetingText":"Hi there! Welcome ,\nHow can I help you ?. \nFeel free to get in touch!","ctaText":"Open Chat","btnColor":"#207e52","cornerRadius":40,"welcomeMessage":"Hello","btnColorScheme":"light","brandImage":"https://media.licdn.com/dms/image/v2/D4D03AQELdJlcdUlL6Q/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1695455041700?e=2147483647&v=beta&t=mekq8NLTxkJUIQyuO8k8-74tyO5dOpWiWvVVz28Jbj4","darkHeaderColorScheme":{"title":"#333333","subTitle":"#4F4F4F"}};  
-  window.onload = () => {
-    _waEmbed(wa_btnSetting, wa_widgetSetting);
+  // WhatsApp Button and Widget Settings
+  var wa_btnSetting = {
+    "btnColor": "linear-gradient(to right, hsl(45, 100%, 71%), hsl(207, 65%, 6%))", // Yellow + Dark Blue gradient
+    "ctaText": "Message Us",
+    "cornerRadius": 40,
+    "marginBottom": 20,
+    "marginLeft": 20,
+    "marginRight": 20,
+    "btnPosition": "left",
+    "whatsAppNumber": "250780854895",
+    "welcomeMessage": "Hello, How can I assist you today?",
+    "zIndex": 999999,
+    "btnColorScheme": "light"
   };
+  
+  var wa_widgetSetting = {
+    "title": "David",
+    "subTitle": "Quick Support",
+    "headerBackgroundColor": " hsl(207, 65%, 6%)",
+    "greetingText": "Hi there! How can I help?",
+    "ctaText": "Open Chat",
+    "btnColor": "linear-gradient(to right, hsl(45, 100%, 71%), hsl(207, 65%, 6%))",  // Gradient color
+    "cornerRadius": 40,
+    "brandImage": "https://imgur.com/a/HE1VmGf"
+  };
+
+  // Show Widget with a delay and animate
+  window.onload = () => {
+    setTimeout(() => {
+      _waEmbed(wa_btnSetting, wa_widgetSetting);  // Embed WhatsApp widget
+
+      let waButton = document.querySelector(".wa-chat-button");  // Select button
+      if (waButton) {
+        // Apply Animation and Hover Effects
+        waButton.style.animation = "fadeIn 1s ease-out, bounce 1.5s infinite";
+        waButton.style.transition = "transform 0.3s ease, box-shadow 0.3s ease";
+
+        // Hover effect for interaction
+        waButton.addEventListener("mouseenter", () => {
+          waButton.style.transform = "scale(1.1)";
+          waButton.style.boxShadow = "0 8px 20px rgba(255, 165, 0, 0.5)"; // Bright yellow shadow
+        });
+        waButton.addEventListener("mouseleave", () => {
+          waButton.style.transform = "scale(1)";
+          waButton.style.boxShadow = "none";
+        });
+      }
+    }, 20000);  // 20-second delay
+  };
+
+  // CSS Animations (fade-in + bounce)
+  let style = document.createElement("style");
+  style.innerHTML = `
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .wa-chat-button {
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4); /* Subtle yellow shadow */
+    }
+  `;
+  document.head.appendChild(style);
 </script>
+
+
 
 </body>
 
