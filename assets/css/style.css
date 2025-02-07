@@ -2135,9 +2135,9 @@ textarea.form-input::-webkit-resizer { display: none; }
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 4px 15px rgba(12, 17, 43, 0.3);
+      box-shadow: 0 4px 15px rgba(15, 23, 63, 0.3);
       border-radius: 50%;
-      background: #128c7e;
+      background: #41430e;
       cursor: pointer;
       z-index: 1000;
       animation: float 3s ease-in-out infinite;
@@ -2155,7 +2155,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     .WA_Chat_Widget .WA_FloatingButton svg {
       width: 35px;
       height: 35px;
-      fill: #fff;
+      fill: #605914;
     }
     
     /* Chat Box */
@@ -2164,7 +2164,7 @@ textarea.form-input::-webkit-resizer { display: none; }
       width: 320px;
       max-height: 500px;
       border-radius: 12px;
-      background: #fff;
+      background: #1c375e;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
       display: none;
       opacity: 0;
@@ -2183,7 +2183,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     
     /* Header */
     .WA_Chat_Widget .WA_ChatBox_Header {
-      background: linear-gradient(135deg, #128c7e, #075e54);
+      background: linear-gradient(135deg, #7d8222, #1c1c79);
       padding: 15px;
       display: flex;
       align-items: center;
@@ -2273,7 +2273,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     }
     
     .WA_Chat_Widget .WA_ChatBox_Footer .btn.btn-whatsapp {
-      background: #25d366;
+      background: #789125;
       color: #fff;
     }
     
