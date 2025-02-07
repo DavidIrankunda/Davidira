@@ -2117,7 +2117,6 @@ textarea.form-input::-webkit-resizer { display: none; }
     }
     
 
-  
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
     /* Global Reset */
@@ -2127,222 +2126,180 @@ textarea.form-input::-webkit-resizer { display: none; }
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
     }
-
+    
     /* Floating Button */
     .WA_Chat_Widget .WA_FloatingButton {
       position: fixed;
-      width: 70px;
-      height: 70px;
+      width: 60px;
+      height: 60px;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 4px 20px rgba(12, 17, 43, 0.2);
+      box-shadow: 0 4px 15px rgba(12, 17, 43, 0.3);
       border-radius: 50%;
-      background: #d8cca4;
+      background: #128c7e;
       cursor: pointer;
       z-index: 1000;
       animation: float 3s ease-in-out infinite;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      opacity: 1;
+      bottom: 20px;
+      right: 20px;
+      transition: transform 0.3s ease, background 0.3s ease;
     }
-
-    .WA_Chat_Widget .WA_FloatingButton svg {
-      width: 40px;
-      height: 40px;
-      fill: #0a1442;
-      transition: transform 0.3s ease;
-    }
-
-    .WA_Chat_Widget .WA_FloatingButton:hover svg {
+    
+    .WA_Chat_Widget .WA_FloatingButton:hover {
+      background: #075e54;
       transform: scale(1.1);
     }
-
+    
+    .WA_Chat_Widget .WA_FloatingButton svg {
+      width: 35px;
+      height: 35px;
+      fill: #fff;
+    }
+    
     /* Chat Box */
     .WA_Chat_Widget .WA_ChatBox {
       position: fixed;
-      width: 360px;
-      height: auto;
-      overflow: hidden;
-      border-radius: 15px;
-      background-color: #a33030;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      width: 320px;
+      max-height: 500px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
       display: none;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      bottom: 90px;
+      right: 20px;
+      transform: scale(0.9);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 999;
     }
-
+    
     .WA_Chat_Widget .WA_ChatBox.active {
+      display: block;
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1);
     }
-
+    
     /* Header */
     .WA_Chat_Widget .WA_ChatBox_Header {
-      background: linear-gradient(135deg, #0a1442, #a4ad22);;
-      padding: 20px;
+      background: linear-gradient(135deg, #128c7e, #075e54);
+      padding: 15px;
       display: flex;
       align-items: center;
-      gap: 15px;
-      position: relative;
+      gap: 10px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      color: #fff;
     }
-
+    
     .WA_Chat_Widget .WA_ChatBox_Header .avatarBox {
-      width: 65px;
-      height: 65px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid #a4ad22;
+      border: 2px solid #fff;
     }
-
+    
     .WA_Chat_Widget .WA_ChatBox_Header .avatarBox img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-
+    
     .WA_Chat_Widget .WA_ChatBox_Header .infoBox .name {
-      color: #4ac73e;
       font-weight: 600;
-      font-size: 18px;
+      font-size: 16px;
     }
-
-    .WA_Chat_Widget .WA_ChatBox_Header .infoBox .answer_time {
-      color: #e4e4e4;
-      font-size: 14px;
-    }
-
+    
     .WA_Chat_Widget .WA_ChatBox_Header .WA_Close {
+      margin-left: auto;
       background: transparent;
-      color: #d34d64;
+      color: #fff;
       border: none;
-      outline: none;
-      font-size: 20px;
-      position: absolute;
-      top: 10px;
-      right: 10px;
+      font-size: 18px;
       cursor: pointer;
       transition: transform 0.3s ease;
     }
-
+    
     .WA_Chat_Widget .WA_ChatBox_Header .WA_Close:hover {
       transform: rotate(90deg);
     }
-
+    
     /* Body */
     .WA_Chat_Widget .WA_ChatBox_Body {
-      padding: 20px;
-      background: #da9f64;
-      position: relative;
-    }
-
-    .WA_Chat_Widget .WA_ChatBox_Body::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url(./bg-pattern.png);
-      opacity: 0.1;
-      z-index: 0;
-    }
-
-    .WA_Chat_Widget .WA_ChatBox_Body .message {
-      max-width: 280px;
-      background: #fff;
       padding: 15px;
-      border-radius: 10px;
-      position: relative;
-      animation: slideIn 0.5s ease;
+      background: #f7f7f7;
+      max-height: 300px;
+      overflow-y: auto;
     }
-
-    .WA_Chat_Widget .WA_ChatBox_Body .message::before {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
+    
+    .WA_Chat_Widget .WA_ChatBox_Body .message {
       background: #fff;
-      left: -10px;
-      top: 10px;
-      border-radius: 3px;
-      clip-path: polygon(100% 0, 0 0, 100% 100%);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
-
+    
     .WA_Chat_Widget .WA_ChatBox_Body .message .username {
-      color: darkgray;
+      color: gray;
+      font-size: 13px;
       font-weight: 500;
-      font-size: 14px;
     }
-
+    
     .WA_Chat_Widget .WA_ChatBox_Body .message .message_content {
       font-size: 14px;
-      color: #000;
-      margin-top: 5px;
+      color: #333;
     }
-
+    
     /* Footer */
     .WA_Chat_Widget .WA_ChatBox_Footer {
-      padding: 20px;
-      background-color: #b49a51;
+      padding: 12px;
+      background: #fff;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
-
+    
     .WA_Chat_Widget .WA_ChatBox_Footer .btn {
       width: 100%;
-      outline: none;
-      border: none;
-      padding: 12px;
-      border-radius: 1000px;
-      font-size: 16px;
+      padding: 10px;
+      border-radius: 50px;
+      font-size: 14px;
       cursor: pointer;
-      text-decoration: none;
       text-align: center;
       transition: background 0.3s ease, transform 0.3s ease;
     }
-
+    
     .WA_Chat_Widget .WA_ChatBox_Footer .btn.btn-whatsapp {
-      background: #128c7e;
+      background: #25d366;
       color: #fff;
     }
-
+    
     .WA_Chat_Widget .WA_ChatBox_Footer .btn.btn-whatsapp:hover {
-      background: #075e54;
+      background: #128c7e;
       transform: translateY(-2px);
     }
-
-    /* Animations */
+    
+    /* Floating Animation */
     @keyframes float {
       0%, 100% {
         transform: translateY(0);
       }
       50% {
-        transform: translateY(-10px);
+        transform: translateY(-5px);
       }
     }
-
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    
+    /* Open Chat Box */
+    .WA_Chat_Widget .WA_FloatingButton.active {
+      transform: scale(0.85);
     }
-
-    /* Position */
-    .WA_Chat_Widget[data-position="bottom-right"] .WA_FloatingButton {
-      bottom: 20px;
-      right: 20px;
+    
+    .WA_Chat_Widget .WA_ChatBox.active {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
     }
-
-    .WA_Chat_Widget[data-position="bottom-right"] .WA_ChatBox {
-      bottom: 110px;
-      right: 30px;
-    }
-  
+    

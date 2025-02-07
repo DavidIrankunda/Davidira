@@ -1454,30 +1454,47 @@
 </div>
 
 <script>
-  let isChatboxVisible = false;
-  const chatbox = document.querySelector(".WA_Chat_Widget .WA_ChatBox");
-  const floatingButton = document.querySelector(".WA_Chat_Widget .WA_FloatingButton");
+ document.addEventListener("DOMContentLoaded", function () {
+    let isChatboxVisible = false;
+    const chatWidget = document.querySelector(".WA_Chat_Widget");
+    const chatbox = document.querySelector(".WA_Chat_Widget .WA_ChatBox");
+    const floatingButton = document.querySelector(".WA_Chat_Widget .WA_FloatingButton");
+    let chatTimer;
 
-  // Show widget after 20 seconds
-  setTimeout(() => {
-    floatingButton.style.opacity = 1;
-    floatingButton.style.transform = "translateY(0)";
-  }, 20000);
+    // Initially hide chat widget
+    chatWidget.style.display = "none";
 
-  function hideChatbox() {
-    isChatboxVisible = false;
-    chatbox.classList.remove("active");
-  }
-
-  function toggleChatbox() {
-    isChatboxVisible = !isChatboxVisible;
-    chatbox.style.display = isChatboxVisible ? "block" : "none";
-    if (isChatboxVisible) {
-      setTimeout(() => chatbox.classList.add("active"), 10);
-    } else {
-      chatbox.classList.remove("active");
+    function showChatWidget() {
+        chatWidget.style.display = "block";
+        chatWidget.style.opacity = 1;
+        chatWidget.style.transform = "translateY(0)";
+        chatTimer = setTimeout(hideChatWidget, 30000); // Hide after 30 seconds
     }
-  }
+
+    function hideChatWidget() {
+        chatWidget.style.opacity = 0;
+        chatWidget.style.transform = "translateY(20px)";
+        setTimeout(() => {
+            chatWidget.style.display = "none";
+        }, 500); // Smooth transition
+        chatTimer = setTimeout(showChatWidget, 30000); // Show again after 30 seconds
+    }
+
+    function toggleChatbox() {
+        isChatboxVisible = !isChatboxVisible;
+        chatbox.style.display = isChatboxVisible ? "block" : "none";
+        if (isChatboxVisible) {
+            clearTimeout(chatTimer); // Reset timer
+            chatTimer = setTimeout(hideChatWidget, 30000);
+        }
+    }
+
+    floatingButton.addEventListener("click", toggleChatbox);
+
+    // Start first appearance after 30 seconds
+    setTimeout(showChatWidget, 30000);
+});
+
 </script>
 
 
