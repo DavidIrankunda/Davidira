@@ -1,10 +1,10 @@
-/*-----------------------------------*\
+r/*-----------------------------------*\
   #style.css
 \*-----------------------------------*/
 
 
 /**
- * copyright 2022 @codewithsadee
+ * copyright 2022 @codewithdavid 
  */
 
 
@@ -2155,7 +2155,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     .WA_Chat_Widget .WA_FloatingButton svg {
       width: 35px;
       height: 35px;
-      fill: #605914;
+      fill: #fff;
     }
     
     /* Chat Box */
@@ -2164,7 +2164,7 @@ textarea.form-input::-webkit-resizer { display: none; }
       width: 320px;
       max-height: 500px;
       border-radius: 12px;
-      background: #1c375e;
+      background: #fff;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
       display: none;
       opacity: 0;
@@ -2183,7 +2183,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     
     /* Header */
     .WA_Chat_Widget .WA_ChatBox_Header {
-      background: linear-gradient(135deg, #7d8222, #1c1c79);
+      background: linear-gradient(135deg, #128c7e, #075e54);
       padding: 15px;
       display: flex;
       align-items: center;
@@ -2273,7 +2273,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     }
     
     .WA_Chat_Widget .WA_ChatBox_Footer .btn.btn-whatsapp {
-      background: #789125;
+      background: #25d366;
       color: #fff;
     }
     
