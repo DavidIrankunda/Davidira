@@ -596,6 +596,7 @@ main {
 .testimonials-item-title { margin-bottom: 7px; }
 
 .testimonials-text {
+  font-family: 'Playfair Display', serif;
   color: var(--light-gray);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
