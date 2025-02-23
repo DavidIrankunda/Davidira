@@ -2346,3 +2346,9 @@ textarea.form-input::-webkit-resizer { display: none; }
       right: 30px;
     }
   
+
+    .stars {
+      color: #FFD700; /* Gold color */
+      font-size: 20px;
+  }
+  
