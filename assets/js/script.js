@@ -158,3 +158,45 @@ for (let i = 0; i < navigationLinks.length; i++) {
 }
 
 
+// Advanced Cursor Animation
+const cursor = document.querySelector('.cursor');
+const cursorTrail = document.createElement('div');
+cursorTrail.classList.add('cursor-trail');
+document.body.appendChild(cursorTrail);
+
+let mouseX = 0, mouseY = 0;
+let trailX = 0, trailY = 0;
+const ease = 0.2; // Adjust for smoother or faster trail
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.pageX;
+  mouseY = e.pageY;
+  cursor.style.left = `${mouseX}px`;
+  cursor.style.top = `${mouseY}px`;
+});
+
+const animateTrail = () => {
+  const dx = mouseX - trailX;
+  const dy = mouseY - trailY;
+  trailX += dx * ease;
+  trailY += dy * ease;
+  cursorTrail.style.left = `${trailX}px`;
+  cursorTrail.style.top = `${trailY}px`;
+  requestAnimationFrame(animateTrail);
+};
+
+animateTrail();
+
+document.addEventListener('click', () => {
+  cursor.classList.add('active');
+  setTimeout(() => cursor.classList.remove('active'), 200);
+});
+
+document.querySelectorAll('a, button').forEach((element) => {
+  element.addEventListener('mouseenter', () => {
+    cursor.classList.add('hover');
+  });
+  element.addEventListener('mouseleave', () => {
+    cursor.classList.remove('hover');
+  });
+});
