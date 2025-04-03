@@ -1585,33 +1585,31 @@
 
           <h3 class="h3 form-title">Contact Form</h3>
 
-          
-          <h3 class="h3 form-title">Contact Form</h3>
+           <!-- FormBold Form -->
+  <form action="https://formbold.com/s/3jvPV" method="POST" class="form" data-form>
+    <div class="input-wrapper">
+      <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+      <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+    </div>
 
-<form action="https://formbold.com/s/3jvPV" method="POST" class="form" data-form>
+    <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
 
-  <div class="input-wrapper">
-    <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-    <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
-  </div>
+    <!-- Google reCAPTCHA -->
+    <div class="g-recaptcha" data-sitekey="6Lf7gwkrAAAAAFTLjhSQ3-zOSYY6sHSZ8PcAk8m0" data-callback="enableSubmitButton"></div>
 
-  <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+    <!-- Submit Button -->
+    <button class="form-btn" type="submit" id="submit-btn" disabled>
+      <ion-icon name="paper-plane"></ion-icon>
+      <span>Send Message</span>
+    </button>
+  </form>
 
-  <!-- Google reCAPTCHA v2 -->
-  <div class="g-recaptcha" data-sitekey="6LdoggkrAAAAABAgjEWhuOlM0CTUdN_hhs709WtF"></div>
-
-  <button class="form-btn" type="submit" disabled data-form-btn>
-    <ion-icon name="paper-plane"></ion-icon>
-    <span>Send Message</span>
-  </button>
-
-</form>
-
-<!-- Google reCAPTCHA Script -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-
-
+  <script>
+    function enableSubmitButton() {
+      // Enable the submit button after reCAPTCHA is completed
+      document.getElementById("submit-btn").disabled = false;
+    }
+  </script>
         </section>
 
         <section class="mapbox" data-mapbox>
